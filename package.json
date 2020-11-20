@@ -19,7 +19,7 @@
     "lint": "eslint src/** test/** --fix",
     "secure-mode": "SET NODE_ENV=test&&jest --runInBand --detectOpenHandles --watchAll --verbose=true",
     "pm2": "SET NODE_ENV=prod&&pm2 start src/server.js",
-    "prod": "node src/server.js -p $SERVER_PORT"
+    "prod": "node src/server.js -p $PORT"
   },
   "keywords": [],
   "author": "",
