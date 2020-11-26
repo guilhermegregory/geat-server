@@ -70,6 +70,9 @@ describe('Ao autenticar via signin', () => {
 
   test('Deve retornar o token', () => {
     expect(userBodyResponse).toHaveProperty('token');
+    expect(userBodyResponse).toHaveProperty('userData');
+    expect(userBodyResponse.userData).toHaveProperty('name');
+    expect(userBodyResponse.userData).toHaveProperty('email');
   });
 });
 
