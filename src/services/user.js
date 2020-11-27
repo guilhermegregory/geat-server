@@ -19,7 +19,7 @@ module.exports = (app) => {
 
     const newUser = { ...user };
     newUser.password = getPasswordHash(user.password);
-    return app.db('users').insert(newUser, ['id', 'name', 'email']);
+    return app.db('users').insert(newUser, ['id', 'name', 'avatar', 'email']);
   };
 
   const update = async (id, user) => {
@@ -34,7 +34,7 @@ module.exports = (app) => {
     if (user.password) {
       newUser.password = getPasswordHash(user.password);
     }
-    return app.db('users').where({ id }).update(newUser, ['id', 'name', 'email']);
+    return app.db('users').where({ id }).update(newUser, ['id', 'name', 'avatar', 'email']);
   };
 
   const remove = async (id, userId) => {

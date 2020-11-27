@@ -34,7 +34,7 @@ describe('Ao salvar um usuário com sucesso', () => {
   test('Deve retornar o status 201', () => {
     return request(app).post(MAIN_ROUTE)
       .set('authorization', `bearer ${TOKEN}`)
-      .send({ name: 'User Save', email: 'userSave@email.com', password: '123456' })
+      .send({ name: 'User Save', avatar: 'Avatar Save', email: 'userSave@email.com', password: '123456' })
       .then((res) => {
         expect(res.status).toBe(201);
         userBodyResponse = res.body;
@@ -45,6 +45,8 @@ describe('Ao salvar um usuário com sucesso', () => {
     expect(userBodyResponse).toHaveProperty('id');
     expect(userBodyResponse).toHaveProperty('name');
     expect(userBodyResponse.name).toBe('User Save');
+    expect(userBodyResponse).toHaveProperty('avatar');
+    expect(userBodyResponse.avatar).toBe('Avatar Save');
     expect(userBodyResponse).toHaveProperty('email');
     expect(userBodyResponse.email).toBe('userSave@email.com');
   });
@@ -60,7 +62,7 @@ describe('Ao salvar um usuário com sucesso', () => {
 });
 
 describe('Ao tentar salvar um usuário inválido', () => {
-  const validUser = { name: 'User Invalid', email: 'userInvalid@email.com', password: '123456' };
+  const validUser = { name: 'User Invalid', avatar: 'Avatar Invalid', email: 'userInvalid@email.com', password: '123456' };
 
   const userTestTemplate = (newData, errorMessage) => {
     return request(app).post(MAIN_ROUTE)
@@ -88,6 +90,16 @@ describe('Ao alterar um usuário com sucesso', () => {
       .then((res) => {
         expect(res.status).toBe(200);
         expect(res.body.name).toBe('User #1 Updated');
+      });
+  });
+
+  test('Deve permitir alteração de avatar', () => {
+    return request(app).put(`${MAIN_ROUTE}/10000`)
+      .set('authorization', `bearer ${TOKEN}`)
+      .send({ avatar: 'Avatar #1 Updated' })
+      .then((res) => {
+        expect(res.status).toBe(200);
+        expect(res.body.avatar).toBe('Avatar #1 Updated');
         userBodyResponse = res.body;
       });
   });
@@ -117,6 +129,8 @@ describe('Ao alterar um usuário com sucesso', () => {
     expect(userBodyResponse).toHaveProperty('id');
     expect(userBodyResponse).toHaveProperty('name');
     expect(userBodyResponse.name).toBe('User #1 Updated');
+    expect(userBodyResponse).toHaveProperty('avatar');
+    expect(userBodyResponse.avatar).toBe('Avatar #1 Updated');
     expect(userBodyResponse).toHaveProperty('email');
     expect(userBodyResponse.email).toBe('user1@email.com');
   });

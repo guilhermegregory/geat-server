@@ -2,7 +2,7 @@ const { DateTime } = require('luxon');
 
 exports.seed = (knex) => {
   return knex('users').insert([
-    { id: 11100, name: 'User #13', email: 'user13@email.com', password: '$2a$10$ngFCjFgKsgwYo3zgpfScJexUBc6lF7AbnNdWz4WwnAKJ5AvVUy61y' },
+    { id: 11100, name: 'User #13', avatar: 'Avatar #13', email: 'user13@email.com', password: '$2a$10$ngFCjFgKsgwYo3zgpfScJexUBc6lF7AbnNdWz4WwnAKJ5AvVUy61y' },
   ])
     .then(() => knex('types').insert([
       { id: 10100, name: 'Type #3' },
