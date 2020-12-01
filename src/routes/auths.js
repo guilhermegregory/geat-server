@@ -31,6 +31,7 @@ module.exports = (app) => {
           const userData = {
             name: user[0].name,
             email: user[0].email,
+            avatar: user[0].avatar,
           };
           res.status(200).json({ token, userData });
         } else throw new ValidationError('Usuário ou senha inválidos');

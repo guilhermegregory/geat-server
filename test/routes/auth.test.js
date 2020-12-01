@@ -73,6 +73,7 @@ describe('Ao autenticar via signin', () => {
     expect(userBodyResponse).toHaveProperty('userData');
     expect(userBodyResponse.userData).toHaveProperty('name');
     expect(userBodyResponse.userData).toHaveProperty('email');
+    expect(userBodyResponse.userData).toHaveProperty('avatar');
   });
 });
 
